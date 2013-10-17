@@ -1,0 +1,81 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="top"
+    android:orientation="vertical"
+    tools:context=".GpsBasicsAndroidExample" >
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:text="@string/instructions" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:clickable="true"
+        android:longClickable="true"
+        android:text="Lat,Long"
+        android:textAlignment="textStart" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_weight="4"
+        android:orientation="vertical" >
+
+        <EditText
+            android:id="@+id/editText1"
+            android:layout_width="match_parent"
+            android:layout_height="275dp"
+            android:layout_gravity="top"
+            android:ems="10"
+            android:gravity="top"
+            android:inputType="textMultiLine" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="4" >
+
+        <Button
+            android:id="@+id/button1"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="18dp"
+            android:layout_marginLeft="24dp"
+            android:text="@string/gps_button" />
+
+        <Button
+            android:id="@+id/buttonClear"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="14dp"
+            android:text="@string/clear_button" />
+
+        <Button
+            android:id="@+id/buttonReset"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/reset_button" />
+
+        <Button
+            android:id="@+id/buttonEmail"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/email_button" />
+    </LinearLayout>
+
+</LinearLayout>
