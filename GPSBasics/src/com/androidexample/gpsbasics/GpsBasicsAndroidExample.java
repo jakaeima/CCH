@@ -1,16 +1,18 @@
 package com.androidexample.gpsbasics;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 import android.widget.TextView;
 import android.widget.EditText;
-import android.app.Activity;
 import android.content.Context;
+
 
 
 
@@ -89,6 +91,39 @@ public class GpsBasicsAndroidExample extends Activity implements LocationListene
             public void onClick(View arg0) {        
             	Toast.makeText(getApplicationContext(), "Email Sent", Toast.LENGTH_LONG).show();
             	//Need to create file and send email with file attached and copy coordinates list into body of email
+            	String bodytext = etxtLocation.getText().toString();
+            	
+            	//TODO: Save coordinates list to file and attach to email
+            	/*CREATE THE FILE AND PUT TEXT IN IT
+            	try  
+                {
+                    //File f1=new File("/sdcard/Prag.txt");
+                    File f1=new File(Environment.getExternalStorageDirectory() + "Prag.txt");
+                    BufferedWriter out = new BufferedWriter(new FileWriter(f1,true));
+                    out.write("Pragadheesh" + "\n");
+                    out.close();
+
+                    } catch (IOException ioe) 
+                      {ioe.printStackTrace();}
+                 */
+            	/*ATTACH THE FILE
+            	 * i.putExtra(Intent.EXTRA_STREAM, Uri.parse(Environment.getExternalStorageDirectory() + "Prag.txt"));
+            	 */
+            	//TODO: Save coordinates list to file and attach to email
+
+            	
+            	Intent i = new Intent(Intent.ACTION_SEND);
+            	i.setType("message/rfc822");
+            	i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"recipient@example.com"});
+            	i.putExtra(Intent.EXTRA_SUBJECT, "subject of email");
+            	i.putExtra(Intent.EXTRA_TEXT   , bodytext);
+            	try {
+            	    startActivity(Intent.createChooser(i, "Send mail..."));
+            	} catch (android.content.ActivityNotFoundException ex) {
+            	    Toast.makeText(getApplicationContext(), "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+            	}
+            	
+            	
             	
             }
         });
