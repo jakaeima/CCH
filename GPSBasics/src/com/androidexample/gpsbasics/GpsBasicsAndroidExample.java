@@ -88,6 +88,8 @@ public class GpsBasicsAndroidExample extends Activity implements LocationListene
             @Override
             public void onClick(View arg0) {        
             	Toast.makeText(getApplicationContext(), "Email Sent", Toast.LENGTH_LONG).show();
+            	//Need to create file and send email with file attached and copy coordinates list into body of email
+            	
             }
         });
         
