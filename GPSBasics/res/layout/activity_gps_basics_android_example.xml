@@ -20,7 +20,7 @@
         android:layout_marginTop="20dp"
         android:clickable="true"
         android:longClickable="true"
-        android:text="Lat,Long"
+        android:text="ID,Lat,Long,Comment"
         android:textAlignment="textStart" />
 
     <LinearLayout

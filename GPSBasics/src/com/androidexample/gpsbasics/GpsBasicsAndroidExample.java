@@ -1,8 +1,15 @@
 package com.androidexample.gpsbasics;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -61,7 +68,7 @@ public class GpsBasicsAndroidExample extends Activity implements LocationListene
                     double latitude = gps.getLatitude();
                     double longitude = gps.getLongitude();
                     //txtLocation.append("\n" + latitude + "," + longitude);
-                    etxtLocation.append("\n" + locCount + "," + latitude + "," + longitude);
+                    etxtLocation.append("\n" + locCount + "," + latitude + "," + longitude + ",");
                     // \n is for new line
                     //Toast.makeText(getApplicationContext(), "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();    
                 }else{
@@ -94,21 +101,19 @@ public class GpsBasicsAndroidExample extends Activity implements LocationListene
             	String bodytext = etxtLocation.getText().toString();
             	
             	//TODO: Save coordinates list to file and attach to email
-            	/*CREATE THE FILE AND PUT TEXT IN IT
+            	//*CREATE THE FILE AND PUT TEXT IN IT
             	try  
                 {
                     //File f1=new File("/sdcard/Prag.txt");
-                    File f1=new File(Environment.getExternalStorageDirectory() + "Prag.txt");
+                    File f1=new File(Environment.getExternalStorageDirectory() + File.separator + "locations.txt");
                     BufferedWriter out = new BufferedWriter(new FileWriter(f1,true));
-                    out.write("Pragadheesh" + "\n");
+                    out.write(bodytext);
                     out.close();
 
                     } catch (IOException ioe) 
                       {ioe.printStackTrace();}
-                 */
-            	/*ATTACH THE FILE
-            	 * i.putExtra(Intent.EXTRA_STREAM, Uri.parse(Environment.getExternalStorageDirectory() + "Prag.txt"));
-            	 */
+                 //*/
+            	
             	//TODO: Save coordinates list to file and attach to email
 
             	
@@ -117,6 +122,14 @@ public class GpsBasicsAndroidExample extends Activity implements LocationListene
             	i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"recipient@example.com"});
             	i.putExtra(Intent.EXTRA_SUBJECT, "subject of email");
             	i.putExtra(Intent.EXTRA_TEXT   , bodytext);
+            	
+            	///*ATTACH THE FILE
+            	
+            	Uri urilocation = Uri.parse(Environment.getExternalStorageDirectory() + File.separator + "locations.txt");
+            	
+          	  	i.putExtra(Intent.EXTRA_STREAM, urilocation);
+          	  	//*/
+          	  
             	try {
             	    startActivity(Intent.createChooser(i, "Send mail..."));
             	} catch (android.content.ActivityNotFoundException ex) {
