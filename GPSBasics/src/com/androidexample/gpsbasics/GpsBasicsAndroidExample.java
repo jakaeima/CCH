@@ -21,9 +21,6 @@ import android.widget.EditText;
 import android.content.Context;
 
 
-
-
-
 public class GpsBasicsAndroidExample extends Activity implements LocationListener {
 
 	Button btnShowLocation;
@@ -87,7 +84,7 @@ public class GpsBasicsAndroidExample extends Activity implements LocationListene
             @Override
             public void onClick(View arg0) {        
             	locCount = 0;
-            	Toast.makeText(getApplicationContext(), "Counter Reset", Toast.LENGTH_LONG).show();
+            	//Toast.makeText(getApplicationContext(), "Counter Reset", Toast.LENGTH_LONG).show();
             }
         });
         
@@ -96,12 +93,11 @@ public class GpsBasicsAndroidExample extends Activity implements LocationListene
              
             @Override
             public void onClick(View arg0) {        
-            	Toast.makeText(getApplicationContext(), "Email Sent", Toast.LENGTH_LONG).show();
+            	//Toast.makeText(getApplicationContext(), "Email Sent", Toast.LENGTH_LONG).show();
             	//Need to create file and send email with file attached and copy coordinates list into body of email
             	String bodytext = etxtLocation.getText().toString();
             	
             	//TODO: Save coordinates list to file and attach to email
-            	//*CREATE THE FILE AND PUT TEXT IN IT
             	try  
                 {
                     //File f1=new File("/sdcard/Prag.txt");
@@ -112,32 +108,22 @@ public class GpsBasicsAndroidExample extends Activity implements LocationListene
 
                     } catch (IOException ioe) 
                       {ioe.printStackTrace();}
-                 //*/
             	
             	//TODO: Save coordinates list to file and attach to email
-
-            	
-            	Intent i = new Intent(Intent.ACTION_SEND);
-            	i.setType("message/rfc822");
-            	i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"recipient@example.com"});
-            	i.putExtra(Intent.EXTRA_SUBJECT, "subject of email");
-            	i.putExtra(Intent.EXTRA_TEXT   , bodytext);
-            	
-            	///*ATTACH THE FILE
-            	
             	Uri urilocation = Uri.parse(Environment.getExternalStorageDirectory() + File.separator + "locations.txt");
+				
+            	Intent i = new Intent(Intent.ACTION_SEND);
+            	i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"jmatsuzaki@honlulu.gov"});
+            	i.putExtra(Intent.EXTRA_SUBJECT, "subject of email");
+            	i.putExtra(Intent.EXTRA_TEXT   , bodytext);            	
+            	i.putExtra(Intent.EXTRA_STREAM, urilocation);
+            	i.setType("message/rfc822");
             	
-          	  	i.putExtra(Intent.EXTRA_STREAM, urilocation);
-          	  	//*/
-          	  
             	try {
             	    startActivity(Intent.createChooser(i, "Send mail..."));
             	} catch (android.content.ActivityNotFoundException ex) {
             	    Toast.makeText(getApplicationContext(), "There are no email clients installed.", Toast.LENGTH_SHORT).show();
             	}
-            	
-            	
-            	
             }
         });
         
@@ -147,7 +133,7 @@ public class GpsBasicsAndroidExample extends Activity implements LocationListene
             @Override
             public void onClick(View arg0) {        
             	etxtLocation.setText("");
-            	Toast.makeText(getApplicationContext(), "Clear Contents", Toast.LENGTH_LONG).show();
+            	//Toast.makeText(getApplicationContext(), "Clear Contents", Toast.LENGTH_LONG).show();
             }
         });
         
@@ -174,8 +160,8 @@ public class GpsBasicsAndroidExample extends Activity implements LocationListene
 	@Override
 	public void onLocationChanged(Location location) {
 		   
-		String str = "Latitude: "+location.getLatitude()+" \nLongitude: "+location.getLongitude();
-		Toast.makeText(getBaseContext(), str, Toast.LENGTH_LONG).show();
+		//String str = "Latitude: "+location.getLatitude()+" \nLongitude: "+location.getLongitude();
+		//Toast.makeText(getBaseContext(), str, Toast.LENGTH_LONG).show();
 	}
 
 	@Override
